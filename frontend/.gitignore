@@ -1,0 +1,37 @@
+# Environment and credentials
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# Python
+.venv/
+venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# Node.js
+node_modules/
+.npm-cache/
+dist/
+build/
+.vite/
+
+# Recovery backups and databases
+_recovery/
+recovery_evidence/
+.recovery_validation/
+*.zip
+*.dump
+*.bak
+*.sqlite
+*.sqlite3
+*.db
+
+# Editor and system files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

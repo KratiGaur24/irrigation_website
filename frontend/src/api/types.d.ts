@@ -1,0 +1,77 @@
+export type NumericValue = number | string | null;
+export type NullableString = string | null;
+
+export interface Farm {
+  farm_id: string; user_id: string; farm_name: string; location_name: NullableString;
+  latitude: NumericValue; longitude: NumericValue; created_at: string; updated_at: string;
+}
+export interface Field {
+  field_id: string; farm_id: string; field_name: string; area_value: NumericValue; area_unit: NullableString;
+  area_m2: NumericValue; irrigation_method: NullableString; latitude: NumericValue; longitude: NumericValue;
+  location_source: NullableString; location_accuracy_m: NumericValue; created_at: string; updated_at: string;
+}
+export interface Crop { crop_id: string; crop_name: string; scientific_name: NullableString; active: boolean }
+export interface CropCycle {
+  crop_cycle_id: string; field_id: string; crop_id: string; crop: Crop; variety: NullableString;
+  regional_profile: NullableString; agronomic_profile_code: NullableString; sowing_date: string; expected_harvest_date: NullableString;
+  actual_harvest_date: NullableString; current_stage: NullableString; stage_override: NullableString;
+  status: string; created_at: string; updated_at: string;
+}
+export interface SoilProfile {
+  soil_profile_id: string; field_id: string; soil_texture: NullableString; field_capacity: NumericValue;
+  wilting_point: NumericValue; source_type: NullableString; source_reference: NullableString;
+  confidence_level: NullableString; active: boolean; sampled_at: NullableString; created_at: string; updated_at: string;
+}
+export interface AgronomicProfile {
+  code: string; crop: string; country: string; state: string; region: string; zone_code: string; zone_name: string;
+  sowing_condition: string; irrigation_condition: string; fertility_condition: NullableString;
+  verification_status: string; scope_note: string; source_organization: string; source_url: string;
+}
+export interface WheatVariety {
+  code: string; display_name: string; release_year: number | null; zone_code: string; sowing_condition: string;
+  irrigation_condition: string; sowing_window_start: NullableString; sowing_window_end: NullableString;
+  first_irrigation_about_das: number | null; irrigation_note: NullableString; verification_status: string;
+  source_organization: string; source_url: string;
+}
+export interface Device {
+  device_id: string; field_id: string; device_code: string; device_name: NullableString; device_type: string;
+  last_seen_at: NullableString; status: string; firmware_version: NullableString; created_at: string; updated_at: string;
+}
+export interface SensorReading {
+  reading_id: number; device_id: string; field_id: string; calibration_id: NullableString; raw_adc: number | null;
+  soil_moisture_pct: NumericValue; temperature_c: NumericValue; humidity_pct: NumericValue; flow_rate_lpm: NumericValue;
+  flow_pulse_count: number | null; cumulative_water_litres: NumericValue; sensor_valid: boolean;
+  recorded_at: string; received_at: string;
+}
+export interface WeatherRecord {
+  request_latitude: NumericValue; request_longitude: NumericValue;
+  weather_id: number; field_id: string; temperature_c: NumericValue; temperature_min_c: NumericValue;
+  temperature_max_c: NumericValue; humidity_pct: NumericValue; wind_speed_mps: NumericValue;
+  solar_radiation_mj_m2: NumericValue; sunshine_hours: NumericValue; actual_rainfall_mm: NumericValue;
+  rain_probability_pct: NumericValue; forecast_rainfall_mm: NumericValue; eto_mm: NumericValue;
+  forecast_time: string; fetched_at: string; source: NullableString;
+}
+
+export interface WeatherLocation {
+  field_id: string; status: 'configured' | 'missing'; latitude: NumericValue; longitude: NumericValue;
+  source: 'field' | 'farm' | null; label: NullableString; approximate: boolean;
+}
+export interface LocationMatch { label: string; latitude: NumericValue; longitude: NumericValue }
+
+export interface IrrigationControl {
+  control_mode: 'simulated' | 'hardware'; available: boolean; start_available: boolean;
+  device_id: NullableString; device_status: NullableString; last_seen_at: NullableString; message: string;
+}
+export interface IrrigationEvent {
+  event_id: string; field_id: string; device_id: NullableString; mode: string;
+  status: 'started' | 'completed' | 'stopped' | 'failed'; control_mode: NullableString;
+  command_acknowledged: boolean | null; trigger_reason: NullableString; fault_code: NullableString;
+  started_at: string; ended_at: NullableString; duration_seconds: number | null;
+  moisture_before_pct: NumericValue; moisture_after_pct: NumericValue; water_used_litres: NumericValue;
+  current_duration_seconds: number | null; current_moisture_pct: NumericValue;
+  current_flow_rate_lpm: NumericValue; current_water_used_litres: NumericValue;
+  measurement_time: NullableString; volume_baseline_time: NullableString; volume_measurement_time: NullableString;
+}
+export interface EmergencyResult {
+  acknowledged: boolean; control_mode: string; message: string; session: IrrigationEvent | null;
+}

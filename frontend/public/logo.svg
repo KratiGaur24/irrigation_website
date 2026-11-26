@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" role="img" aria-labelledby="title">
+  <title id="title">Kisan Jal Smart Irrigation</title>
+  <rect width="1024" height="1024" rx="255" fill="#1e5e40"/>
+  <path d="M512 180C432 284 307 451 307 590c0 113 91 204 205 204s205-91 205-204c0-139-125-306-205-410Z" fill="#35b8ec"/>
+  <path d="M502 307c87 107 139 199 139 270 0 64-50 115-115 115" fill="none" stroke="#fff" stroke-width="46" stroke-linecap="round"/>
+  <circle cx="512" cy="513" r="51" fill="#fff"/>
+  <path d="M358 685c46 52 98 79 154 79s108-27 154-79" fill="none" stroke="#0785c2" stroke-width="44" stroke-linecap="round"/>
+</svg>
